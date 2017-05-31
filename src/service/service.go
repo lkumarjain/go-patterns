@@ -9,7 +9,11 @@ import (
 
 //GetService : Package level method to create Service instance
 func GetService() model.Service {
-	return serviceImpl{dal: dal.GetDal()}
+	return getServiceWithDependencies(dal.GetDal())
+}
+
+func getServiceWithDependencies(dal model.Dal) serviceImpl {
+	return serviceImpl{dal: dal}
 }
 
 type serviceImpl struct {
